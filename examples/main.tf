@@ -11,6 +11,9 @@ module "dashboard" {
     cloudfront = {
       enabled = true
     }
+    ec2 = {
+      enabled = true
+    }
     ecs = {
       enabled = true
     }

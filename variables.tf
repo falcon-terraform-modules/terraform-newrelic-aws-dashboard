@@ -35,6 +35,9 @@ variable "dashboard_pages" {
     cloudfront = optional(object({
       enabled = optional(bool, false)
     }), { enabled = false })
+    ec2 = optional(object({
+      enabled = optional(bool, false)
+    }), { enabled = false })
     ecs = optional(object({
       enabled = optional(bool, false)
     }), { enabled = false })

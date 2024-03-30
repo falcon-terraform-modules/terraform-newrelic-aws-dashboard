@@ -4,6 +4,8 @@
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `cloudfront`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `ec2`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `ecs`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `elasticache_redis`

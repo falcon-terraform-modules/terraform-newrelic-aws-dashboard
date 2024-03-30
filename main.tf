@@ -14,6 +14,8 @@ resource "newrelic_one_dashboard_json" "main" {
           var.dashboard_pages.alb.enabled ? templatefile("${path.module}/templates/pages/alb.json.tftpl", { account_id = var.newrelic_account_id, where = local.whare }) : null,
           # CloudFront
           var.dashboard_pages.cloudfront.enabled ? templatefile("${path.module}/templates/pages/cloudfront.json.tftpl", { account_id = var.newrelic_account_id, where = local.whare }) : null,
+          # EC2
+          var.dashboard_pages.ec2.enabled ? templatefile("${path.module}/templates/pages/ec2.json.tftpl", { account_id = var.newrelic_account_id, where = local.whare }) : null,
           # ECS
           var.dashboard_pages.ecs.enabled ? templatefile("${path.module}/templates/pages/ecs.json.tftpl", { account_id = var.newrelic_account_id, where = local.whare }) : null,
           # ElastiCache Redis
