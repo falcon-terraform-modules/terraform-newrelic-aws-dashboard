@@ -1,0 +1,11 @@
+{
+  "name": "${name}",
+  "description": "${description}",
+  "permissions": "${permissions}",
+  "pages": [
+    %{ for index, page in pages }
+    %{ if index!=0 }, %{ endif }
+    ${ "${page}" }
+    %{ endfor }
+  ]
+}
