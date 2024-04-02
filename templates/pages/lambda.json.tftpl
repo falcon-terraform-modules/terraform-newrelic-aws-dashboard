@@ -17,7 +17,7 @@
                 "nrqlQueries": [
                     {
                         "accountId": ${account_id},
-                        "query": "SELECT average(`aws.lambda.Duration.byFunction`) / 1000 FROM Metric SINCE 1 hour ago UNTIL 6 minutes ago TIMESERIES AUTO FACET `aws.lambda.resource` ${where}"
+                        "query": "SELECT average(`aws.lambda.Duration.byFunction`) / 1000 FROM Metric SINCE 1 hour ago UNTIL 6 minutes ago TIMESERIES AUTO FACET `aws.lambda.FunctionName` ${where}"
                     }
                 ]
             }
@@ -52,7 +52,7 @@
                 "nrqlQueries": [
                     {
                         "accountId": ${account_id},
-                        "query": "SELECT sum(`aws.lambda.Invocations.byFunction`) FROM Metric SINCE 1 hour ago UNTIL 6 minutes ago TIMESERIES AUTO FACET `aws.lambda.resource` ${where}"
+                        "query": "SELECT sum(`aws.lambda.Invocations.byFunction`) FROM Metric SINCE 1 hour ago UNTIL 6 minutes ago TIMESERIES AUTO FACET `aws.lambda.FunctionName` ${where}"
                     }
                 ]
             }
@@ -72,7 +72,7 @@
                 "nrqlQueries": [
                     {
                         "accountId": ${account_id},
-                        "query": "SELECT sum(`aws.lambda.Throttles.byFunction`) FROM Metric SINCE 1 hour ago UNTIL 6 minutes ago TIMESERIES AUTO FACET `aws.lambda.resource` ${where}"
+                        "query": "SELECT sum(`aws.lambda.Throttles.byFunction`) FROM Metric SINCE 1 hour ago UNTIL 6 minutes ago TIMESERIES AUTO FACET `aws.lambda.FunctionName` ${where}"
                     }
                 ]
             }
@@ -92,7 +92,7 @@
                 "nrqlQueries": [
                     {
                         "accountId": ${account_id},
-                        "query": "SELECT sum(`aws.lambda.Errors.byFunction`) FROM Metric SINCE 1 hour ago UNTIL 6 minutes ago TIMESERIES AUTO FACET `aws.lambda.resource` ${where}"
+                        "query": "SELECT sum(`aws.lambda.Errors.byFunction`) FROM Metric SINCE 1 hour ago UNTIL 6 minutes ago TIMESERIES AUTO FACET `aws.lambda.FunctionName` ${where}"
                     }
                 ]
             }
