@@ -172,7 +172,7 @@
                 "nrqlQueries": [
                     {
                         "accountId": ${account_id},
-                        "query": "SELECT uniqueCount(`aws.applicationelb.loadBalancerArn`) FROM Metric FACET aws.region ${where}"
+                        "query": "SELECT uniqueCount(`aws.applicationelb.loadBalancer`) FROM Metric FACET aws.region ${where}"
                     }
                 ]
             }
