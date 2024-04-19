@@ -55,14 +55,14 @@ No outputs.
 ## Usage
 ### 1. Configure NewRelic Provider
 #### Example
-##### provider.tf
+##### providers.tf
 ```hcl
 provider "newrelic" {
   account_id = "1234567"
   api_key    = "NRAK-XXXXXXXXXXXXXXXXXXXXXXXXX"
 }
 ```
-##### versions.tf
+##### terraform.tf
 ```hcl
 terraform {
   required_version = ">= 1.7.0"
