@@ -1,0 +1,148 @@
+{
+    "name": "Amazon Bedrock",
+    "description": null,
+    "widgets": [
+    {
+        "title": "Invocations, by model",
+        "layout": {
+            "column": 1,
+            "row": 1,
+            "width": 8,
+            "height": 3
+        },
+        "linkedEntityGuids": null,
+        "visualization": {
+            "id": "viz.line"
+        },
+        "rawConfiguration": {
+            "nrqlQueries": [
+                {
+                    "accountId": ${account_id},
+                    "query": "SELECT sum(`aws.bedrock.Invocations`)FROM Metric FACET aws.bedrock.ModelId SINCE 1 day ago TIMESERIES auto ${where}"
+                }
+            ]
+        }
+    },
+    {
+        "title": "",
+        "layout": {
+            "column": 9,
+            "row": 1,
+            "width": 4,
+            "height": 6
+        },
+        "linkedEntityGuids": null,
+        "visualization": {
+            "id": "viz.markdown"
+        },
+        "rawConfiguration": {
+            "text": "**Amazon Bedrock** \n\nAmazon Bedrock is a fully managed service that offers a choice of high-performing foundation models (FMs) from leading AI companies like AI21 Labs, Anthropic, Cohere, Meta, Mistral AI, Stability AI, and Amazon via a single API..\n\n\n"
+        }
+    },
+    {
+        "title": "InvocationLatency (sec)",
+        "layout": {
+            "column": 1,
+            "row": 4,
+            "width": 8,
+            "height": 3
+        },
+        "linkedEntityGuids": null,
+        "visualization": {
+            "id": "viz.line"
+        },
+        "rawConfiguration": {
+            "nrqlQueries": [
+                {
+                    "accountId": ${account_id},
+                    "query": "SELECT average(`aws.bedrock.InvocationLatency`) / 1000 FROM Metric FACET aws.bedrock.ModelId SINCE 1 day ago TIMESERIES auto ${where}"
+                }
+            ]
+        }
+    },
+    {
+        "title": "InputTokenCount + OutputTokenCount",
+        "layout": {
+            "column": 1,
+            "row": 7,
+            "width": 8,
+            "height": 3
+        },
+        "linkedEntityGuids": null,
+        "visualization": {
+            "id": "viz.line"
+        },
+        "rawConfiguration": {
+            "nrqlQueries": [
+                {
+                    "accountId": ${account_id},
+                    "query": "SELECT sum(`aws.bedrock.InputTokenCount`) + sum(`aws.bedrock.OutputTokenCount`) FROM Metric FACET aws.bedrock.ModelId SINCE 1 day ago TIMESERIES auto ${where}"
+                }
+            ]
+        }
+    },
+    {
+        "title": "Throttles",
+        "layout": {
+            "column": 9,
+            "row": 7,
+            "width": 4,
+            "height": 3
+        },
+        "linkedEntityGuids": null,
+        "visualization": {
+            "id": "viz.line"
+        },
+        "rawConfiguration": {
+            "nrqlQueries": [
+                {
+                    "accountId": ${account_id},
+                    "query": "SELECT sum(`aws.bedrock.InvocationThrottles`)FROM Metric FACET aws.bedrock.ModelId SINCE 1 day ago TIMESERIES auto ${where}"
+                }
+            ]
+        }
+    },
+    {
+        "title": "InvocationErrors",
+        "layout": {
+            "column": 1,
+            "row": 10,
+            "width": 4,
+            "height": 3
+        },
+        "linkedEntityGuids": null,
+        "visualization": {
+            "id": "viz.billboard"
+        },
+        "rawConfiguration": {
+            "nrqlQueries": [
+                {
+                    "accountId": ${account_id},
+                    "query": "SELECT sum(`aws.bedrock.InvocationServerErrors`) as 'Server', sum(`aws.bedrock.InvocationClientErrors`) as 'Client' FROM Metric SINCE 1 day ago ${where}"
+                }
+            ]
+        }
+    },
+    {
+        "title": "LegacyModelInvocations",
+        "layout": {
+            "column": 5,
+            "row": 10,
+            "width": 4,
+            "height": 3
+        },
+        "linkedEntityGuids": null,
+        "visualization": {
+            "id": "viz.billboard"
+        },
+        "rawConfiguration": {
+            "nrqlQueries": [
+                {
+                    "accountId": ${account_id},
+                    "query": "SELECT sum(`aws.bedrock.LegacyModelInvocations`) as 'LegacyModelInvocations' FROM Metric SINCE 1 day ago ${where}"
+                }
+            ]
+        }
+    }
+    ]
+}

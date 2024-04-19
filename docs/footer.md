@@ -2,7 +2,15 @@
 ### dashboard_pages
 - `alb`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `apig`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `apig`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `bedrock`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `cloudfront`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `daynamodb`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `ec2`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
@@ -32,7 +40,6 @@ provider "newrelic" {
 ##### terraform.tf
 ```hcl
 terraform {
-  required_version = ">= 1.7.0"
   required_providers {
     newrelic = {
       source  = "newrelic/newrelic"

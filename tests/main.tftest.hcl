@@ -4,7 +4,16 @@ variables {
     alb = {
       enabled = true
     }
+    apig = {
+      enabled = true
+    }
+    bedrock = {
+      enabled = true
+    }
     cloudfront = {
+      enabled = true
+    }
+    dynamodb = {
       enabled = true
     }
     ec2 = {

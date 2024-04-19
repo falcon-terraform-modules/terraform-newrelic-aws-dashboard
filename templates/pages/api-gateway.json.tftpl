@@ -1,0 +1,169 @@
+{
+    "name": "Amazon API Gateway",
+    "description": null,
+    "widgets": [
+        {
+            "title": "Calls count compare with 1 hour ago",
+            "layout": {
+                "column": 1,
+                "row": 1,
+                "width": 4,
+                "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+                "id": "viz.billboard"
+            },
+            "rawConfiguration": {
+                "nrqlQueries": [
+                    {
+                        "accountId": ${account_id},
+                        "query": "SELECT sum(`aws.apigateway.Count`) AS Calls FROM Metric SINCE 1 hour ago COMPARE WITH 1 hour ago ${where}"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "Cache hit ratio last hour (%)",
+            "layout": {
+                "column": 5,
+                "row": 1,
+                "width": 4,
+                "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+                "id": "viz.billboard"
+            },
+            "rawConfiguration": {
+                "nrqlQueries": [
+                    {
+                        "accountId": ${account_id},
+                        "query": "SELECT sum(`aws.apigateway.CacheHitCount`) * 100 / sum(`aws.apigateway.Count`) AS `Hit Ratio` FROM Metric SINCE last hour ${where}"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "",
+            "layout": {
+                "column": 9,
+                "row": 1,
+                "width": 4,
+                "height": 6
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+                "id": "viz.markdown"
+            },
+            "rawConfiguration": {
+                "text": "\n![Amazon API Gateway Icon](https://integrations.nr-assets.net/providers/aws_apigateway_stages.png) **Amazon API Gateway (stages)** \n\nAmazon API Gateway is a fully managed service that makes it easy for developers to create, publish, maintain, monitor, and secure APIs at any scale. With a few clicks in the AWS Management Console, you can create an API that acts as a “front door” for applications to access data, business logic, or functionality from your back-end services, such as workloads running on Amazon Elastic Compute Cloud (Amazon EC2), code running on AWS Lambda, or any Web application.\n\n\n"
+            }
+        },
+        {
+            "title": "4xx errors",
+            "layout": {
+                "column": 1,
+                "row": 4,
+                "width": 4,
+                "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+                "id": "viz.line"
+            },
+            "rawConfiguration": {
+                "nrqlQueries": [
+                    {
+                        "accountId": ${account_id},
+                        "query": "SELECT average(`aws.apigateway.4XXError`) AS Error4xx FROM Metric since 6 hours ago TIMESERIES auto FACET aws.apigateway.ApiName ${where}"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "5xx errors",
+            "layout": {
+                "column": 5,
+                "row": 4,
+                "width": 4,
+                "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+                "id": "viz.line"
+            },
+            "rawConfiguration": {
+                "nrqlQueries": [
+                    {
+                        "accountId": ${account_id},
+                        "query": "SELECT average(`aws.apigateway.5XXError`) AS Error5xx FROM Metric SINCE 6 hours ago TIMESERIES auto FACET aws.apigateway.ApiName ${where}"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "Call count",
+            "layout": {
+                "column": 1,
+                "row": 7,
+                "width": 4,
+                "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+                "id": "viz.line"
+            },
+            "rawConfiguration": {
+                "nrqlQueries": [
+                    {
+                        "accountId": ${account_id},
+                        "query": "SELECT sum(`aws.apigateway.Count`) AS Calls FROM Metric SINCE 6 hours ago TIMESERIES auto FACET aws.apigateway.ApiName ${where}"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "Latency (ms)",
+            "layout": {
+                "column": 5,
+                "row": 7,
+                "width": 4,
+                "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+                "id": "viz.line"
+            },
+            "rawConfiguration": {
+                "nrqlQueries": [
+                    {
+                        "accountId": ${account_id},
+                        "query": "SELECT average(`aws.apigateway.Latency`) AS Latency FROM Metric SINCE 6 hour ago TIMESERIES auto FACET aws.apigateway.ApiName ${where}"
+                    }
+                ]
+            }
+        },
+        {
+            "title": "IntegrationLatency (ms)",
+            "layout": {
+                "column": 9,
+                "row": 7,
+                "width": 4,
+                "height": 3
+            },
+            "linkedEntityGuids": null,
+            "visualization": {
+                "id": "viz.line"
+            },
+            "rawConfiguration": {
+                "nrqlQueries": [
+                    {
+                        "accountId": ${account_id},
+                        "query": "SELECT average(`aws.apigateway.IntegrationLatency`) AS Latency FROM Metric SINCE 6 hour ago TIMESERIES auto FACET aws.apigateway.ApiName ${where}"
+                    }
+                ]
+            }
+        }
+    ]
+}

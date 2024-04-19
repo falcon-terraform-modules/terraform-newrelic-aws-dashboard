@@ -3,39 +3,53 @@
 This Terraform module creates and configures NewRelic Dashboard for AWS.
 It will create a separate page for each AWS service on a single Dashboard. It is possible to control create or not create pages for each AWS service. The source for the pages is JSON files published on [newrelic-quickstarts/dashboards](https://github.com/newrelic/newrelic-quickstarts/tree/main/dashboards).
 New AWS services to be supported by update.
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_newrelic"></a> [newrelic](#requirement\_newrelic) | >= 3.28.1 |
+
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_newrelic"></a> [newrelic](#provider\_newrelic) | >= 3.28.1 |
+| <a name="provider_newrelic"></a> [newrelic](#provider\_newrelic) | 3.34.1 |
+
 ## Resources
 
 | Name | Type |
 |------|------|
 | [newrelic_one_dashboard_json.main](https://registry.terraform.io/providers/newrelic/newrelic/latest/docs/resources/one_dashboard_json) | resource |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_aws_account_ids"></a> [aws\_account\_ids](#input\_aws\_account\_ids) | Specifies AWS account IDs in a list. If not specified, the data from all AWS accounts integrated with the NewRelic account will be displayed on the Dashboard. | `list(string)` | `[]` | no |
-| <a name="input_dashboard_description"></a> [dashboard\_description](#input\_dashboard\_description) | Brief text describing the dashboard | `string` | `""` | no |
-| <a name="input_dashboard_name"></a> [dashboard\_name](#input\_dashboard\_name) | The name of the dashboard | `string` | n/a | yes |
-| <a name="input_dashboard_pages"></a> [dashboard\_pages](#input\_dashboard\_pages) | Specifies the parameters necessary to configure the page for each AWS service. Please set `enabled` to true for any one of the services. If `enabled` is set to false for all services, or if an empty object is configured, the apply will go through, but the creation of the Dashboard will fail. See [Nested Inputs Reference](https://github.com/falcon-terraform-modules/terraform-newrelic-aws-dashboard?tab=readme-ov-file#dashboard_pages) for details. | `object` | n/a | yes |
-| <a name="input_dashboard_permissions"></a> [dashboard\_permissions](#input\_dashboard\_permissions) | Determines who can see the dashboard in an account. Valid values are `PRIVATE`, `PUBLIC_READ_ONLY`, or `PUBLIC_READ_WRITE`. Defaults to `PUBLIC_READ_WRITE` | `string` | `"PUBLIC_READ_WRITE"` | no |
 | <a name="input_newrelic_account_id"></a> [newrelic\_account\_id](#input\_newrelic\_account\_id) | Specifies the New Relic account where the dashboard will be created. | `string` | n/a | yes |
+| <a name="input_aws_account_ids"></a> [aws\_account\_ids](#input\_aws\_account\_ids) | Specifies AWS account IDs in a list. If not specified, the data from all AWS accounts integrated with the NewRelic account will be displayed on the Dashboard. | `list(string)` | `[]` | no |
+| <a name="input_dashboard_name"></a> [dashboard\_name](#input\_dashboard\_name) | The name of the dashboard | `string` | n/a | yes |
+| <a name="input_dashboard_description"></a> [dashboard\_description](#input\_dashboard\_description) | Brief text describing the dashboard | `string` | `""` | no |
+| <a name="input_dashboard_permissions"></a> [dashboard\_permissions](#input\_dashboard\_permissions) | Determines who can see the dashboard in an account. Valid values are `PRIVATE`, `PUBLIC_READ_ONLY`, or `PUBLIC_READ_WRITE`. Defaults to `PUBLIC_READ_WRITE` | `string` | `"PUBLIC_READ_WRITE"` | no |
+| <a name="input_dashboard_pages"></a> [dashboard\_pages](#input\_dashboard\_pages) | Specifies the parameters necessary to configure the page for each AWS service. Please set `enabled` to true for any one of the services. If `enabled` is set to false for all services, or if an empty object is configured, the apply will go through, but the creation of the Dashboard will fail. See `Nested Inputs Reference` for details. | `object` | n/a | yes |
+
 ## Outputs
 
 No outputs.
+
 ## Nested Inputs Reference
 ### dashboard\_pages
 - `alb`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `apig`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `apig`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `bedrock`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `cloudfront`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `daynamodb`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `ec2`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
@@ -65,7 +79,6 @@ provider "newrelic" {
 ##### terraform.tf
 ```hcl
 terraform {
-  required_version = ">= 1.7.0"
   required_providers {
     newrelic = {
       source  = "newrelic/newrelic"
@@ -88,7 +101,16 @@ module "dashboard" {
     alb = {
       enabled = true
     }
+    apig = {
+      enabled = true
+    }
+    bedrock = {
+      enabled = true
+    }
     cloudfront = {
+      enabled = true
+    }
+    dynamodb = {
       enabled = true
     }
     ec2 = {
