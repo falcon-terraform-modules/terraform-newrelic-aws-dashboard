@@ -3,7 +3,7 @@
   "description": "",
   "widgets": [
       {
-          "title": "Clusters: CPU utilization (%)",
+          "title": "Clusters: CPU utilized",
           "layout": {
               "height": 3,
               "width": 4,
@@ -17,13 +17,13 @@
               "nrqlQueries": [
                   {
                       "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.CPUUtilization.byCluster`) FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.ClusterName` ${where}"
+                      "query": "SELECT average(`aws.ecs.containerinsights.CpuUtilized`) FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.ClusterName` ${where}"
                   }
               ]
           }
       },
       {
-          "title": "Clusters: memory utilization (%)",
+          "title": "Clusters: memory utilized",
           "layout": {
               "height": 3,
               "width": 4,
@@ -37,7 +37,7 @@
               "nrqlQueries": [
                   {
                       "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.MemoryUtilization.byCluster`) FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.ClusterName` ${where}"
+                      "query": "SELECT average(`aws.ecs.containerinsights.MemoryUtilized`) FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.ClusterName` ${where}"
                   }
               ]
           }
@@ -58,7 +58,7 @@
           }
       },
       {
-          "title": "Clusters: CPU reservation (%)",
+          "title": "Clusters: CPU reserved",
           "layout": {
               "height": 3,
               "width": 4,
@@ -72,13 +72,13 @@
               "nrqlQueries": [
                   {
                       "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.CPUReservation`) FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.ClusterName` ${where}"
+                      "query": "SELECT average(`aws.ecs.containerinsights.CpuReserved`) FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.ClusterName` ${where}"
                   }
               ]
           }
       },
       {
-          "title": "Clusters: memory reservation (%)",
+          "title": "Clusters: memory reserved",
           "layout": {
               "height": 3,
               "width": 4,
@@ -92,7 +92,7 @@
               "nrqlQueries": [
                   {
                       "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.MemoryReservation`) FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.ClusterName` ${where}"
+                      "query": "SELECT average(`aws.ecs.containerinsights.MemoryReserved`) FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.ClusterName` ${where}"
                   }
               ]
           }
@@ -152,7 +152,7 @@
               "nrqlQueries": [
                   {
                       "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.pendingTasksCount.byCluster`) as `Pending tasks`, average(`aws.ecs.runningTasksCount.byCluster`) as `Running tasks` FROM Metric since 1 day ago TIMESERIES auto ${where}"
+                      "query": "SELECT average(`aws.ecs.containerinsights.PendingTaskCount`) as `Pending tasks`, average(`aws.ecs.containerinsights.RunningTaskCount`) as `Running tasks` FROM Metric since 1 day ago TIMESERIES auto ${where}"
                   }
               ]
           }
@@ -172,7 +172,7 @@
               "nrqlQueries": [
                   {
                       "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.activeServicesCount.byCluster`) as `Active services` FROM Metric since 1 day ago TIMESERIES auto ${where}"
+                      "query": "SELECT average(`aws.ecs.containerinsights.ServiceCount`) as `Active services` FROM Metric since 1 day ago TIMESERIES auto ${where}"
                   }
               ]
           }
@@ -192,87 +192,7 @@
               "nrqlQueries": [
                   {
                       "accountId": ${account_id},
-                      "query": "SELECT sum(`aws.ecs.registeredContainerInstancesCount.byCluster`) as `Registered instances` FROM Metric since 1 day ago TIMESERIES auto ${where}"
-                  }
-              ]
-          }
-      },
-      {
-          "title": "Instances: registered CPU (units)",
-          "layout": {
-              "height": 3,
-              "width": 4,
-              "row": 10,
-              "column": 9
-          },
-          "visualization": {
-              "id": "viz.line"
-          },
-          "rawConfiguration": {
-              "nrqlQueries": [
-                  {
-                      "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.registeredCpu`) as `Registered CPU` FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.InstanceArn` ${where}"
-                  }
-              ]
-          }
-      },
-      {
-          "title": "Instances: registered memory (MB)",
-          "layout": {
-              "height": 3,
-              "width": 4,
-              "row": 13,
-              "column": 1
-          },
-          "visualization": {
-              "id": "viz.line"
-          },
-          "rawConfiguration": {
-              "nrqlQueries": [
-                  {
-                      "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.registeredMemory`) as `Registered memory` FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.InstanceArn` ${where}"
-                  }
-              ]
-          }
-      },
-      {
-          "title": "Instances: remaining CPU (units)",
-          "layout": {
-              "height": 3,
-              "width": 4,
-              "row": 13,
-              "column": 5
-          },
-          "visualization": {
-              "id": "viz.line"
-          },
-          "rawConfiguration": {
-              "nrqlQueries": [
-                  {
-                      "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.remainingCpu`) as `Remaining CPU` FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.InstanceArn` ${where}"
-                  }
-              ]
-          }
-      },
-      {
-          "title": "Instances: remaining memory (MB)",
-          "layout": {
-              "height": 3,
-              "width": 4,
-              "row": 13,
-              "column": 9
-          },
-          "visualization": {
-              "id": "viz.line"
-          },
-          "rawConfiguration": {
-              "nrqlQueries": [
-                  {
-                      "accountId": ${account_id},
-                      "query": "SELECT average(`aws.ecs.remainingMemory`) as `Remaining memory` FROM Metric since 1 day ago TIMESERIES auto facet `aws.ecs.InstanceArn` ${where}"
+                      "query": "SELECT sum(`aws.ecs.containerinsights.ContainerInstanceCount`) as `Registered instances` FROM Metric since 1 day ago TIMESERIES auto ${where}"
                   }
               ]
           }
