@@ -91,7 +91,7 @@ terraform {
 ### 2. Deploy module with refer to example usage
 ## Example Usage
 ```hcl
-module "dashboard" {
+module "aws-dashboard" {
   source = "falcon-terraform-modules/aws-dashboard/newrelic"
 
   aws_account_ids     = ["1234567891011"]
