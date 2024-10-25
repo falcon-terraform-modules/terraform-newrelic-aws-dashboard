@@ -17,7 +17,7 @@
                 "nrqlQueries": [
                     {
                         "accountId": ${account_id},
-                        "query": "SELECT sum(`aws.cloudfront.Requests`) FROM Metric FACET `aws.cloudfront.domainName` TIMESERIES 5 minutes until 6 minutes ago ${where}"
+                        "query": "SELECT sum(`aws.cloudfront.Requests`) FROM Metric FACET `aws.cloudfront.DistributionId` TIMESERIES 5 minutes until 6 minutes ago ${where}"
                     }
                 ]
             }
