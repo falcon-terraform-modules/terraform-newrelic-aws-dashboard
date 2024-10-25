@@ -35,6 +35,9 @@ variable "dashboard_pages" {
     apig = optional(object({
       enabled = optional(bool, false)
     }), { enabled = false })
+    backup = optional(object({
+      enabled = optional(bool, false)
+    }), { enabled = false })
     bedrock = optional(object({
       enabled = optional(bool, false)
     }), { enabled = false })
@@ -50,6 +53,9 @@ variable "dashboard_pages" {
     ecs = optional(object({
       enabled = optional(bool, false)
     }), { enabled = false })
+    efs = optional(object({
+      enabled = optional(bool, false)
+    }), { enabled = false })
     elasticache_redis = optional(object({
       enabled = optional(bool, false)
     }), { enabled = false })
@@ -60,6 +66,9 @@ variable "dashboard_pages" {
     rds = optional(object({
       enabled             = optional(bool, false)
       enhanced_monitoring = optional(bool, false)
+    }), { enabled = false })
+    sqs = optional(object({
+      enabled = optional(bool, false)
     }), { enabled = false })
     ses = optional(object({
       enabled = optional(bool, false)

@@ -10,12 +10,6 @@ New AWS services to be supported by update.
 |------|---------|
 | <a name="requirement_newrelic"></a> [newrelic](#requirement\_newrelic) | >= 3.28.1 |
 
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_newrelic"></a> [newrelic](#provider\_newrelic) | 3.34.1 |
-
 ## Resources
 
 | Name | Type |
@@ -43,6 +37,8 @@ No outputs.
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `apig`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `backup`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `bedrock`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `cloudfront`
@@ -53,6 +49,8 @@ No outputs.
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `ecs`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
+- `efs`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `elasticache_redis`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `lambda`
@@ -61,6 +59,8 @@ No outputs.
 - `rds`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
   - `enhanced_monitoring` - When this input is true, a page for RDS Enhanced Monitoring will be created on the Dashboard. If [Amazon RDS Enhanced Monitoring](https://docs.newrelic.com/docs/infrastructure/amazon-integrations/aws-integrations-list/aws-rds-enhanced-monitoring-integration/) is not integrated, a page will be created, but no data will be displayed.
+- `sqs`
+  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `ses`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 
@@ -102,6 +102,9 @@ module "aws-dashboard" {
     apig = {
       enabled = true
     }
+    backup = {
+      enabled = true
+    }
     bedrock = {
       enabled = true
     }
@@ -117,6 +120,9 @@ module "aws-dashboard" {
     ecs = {
       enabled = true
     }
+    efs = {
+      enabled = true
+    }
     elasticache_redis = {
       enabled = true
     }
@@ -129,6 +135,9 @@ module "aws-dashboard" {
       enhanced_monitoring = true
     }
     ses = {
+      enabled = true
+    }
+    sqs = {
       enabled = true
     }
   }
