@@ -43,8 +43,6 @@ No outputs.
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `apig`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
-- `apig`
-  - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `bedrock`
   - `enabled` - Specify the enable/disable of the page using a boolean. The default value is `false`.
 - `cloudfront`
